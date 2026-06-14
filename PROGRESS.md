@@ -38,7 +38,9 @@ Legend: 🟢 solid · 🟡 shaky (revisit) · 🔴 gap (must fix) · ⬜ not yet
 
 ## D3 — Claude Code Config & Workflows (20%)
 - ⬜ CLAUDE.md
-- ⬜ Slash / custom commands
+- 🟢 Slash / custom commands: native (.claude/commands/ project = git-shared; ~/.claude/
+      commands/ user) vs MCP prompts (external server, cross-client, /mcp__server__name).
+      Commands support $ARGUMENTS, ! bash, @ files, frontmatter (description/allowed-tools/model).
 - ⬜ Hooks (events, matchers, exit codes, gotchas)
 - ⬜ Skills (SKILL.md frontmatter)
 - ⬜ Settings & permissions
