@@ -15,7 +15,9 @@ Legend: 🟢 solid · 🟡 shaky (revisit) · 🔴 gap (must fix) · ⬜ not yet
 - 🟡 Pattern boundaries: routing(one path) vs parallelization(all paths); parallelization(design-time)
       vs orchestrator-workers(runtime); chaining(linear gate) vs evaluator-optimizer(loop) — corrected,
       revisit to confirm sticky
-- ⬜ When NOT to build an agent / cost-complexity tradeoffs
+- 🟢 When NOT to build an agent: start simplest; add complexity only when a single
+      call measurably fails; agent earned only when path is unpredictable AND value
+      justifies cost. (Briefly mis-placed "debugging" as simple, self-corrected.)
 
 ## D2 — Tool Design & MCP Integration (18%)
 - ⬜ Tool schema design & descriptions
@@ -69,3 +71,11 @@ Legend: 🟢 solid · 🟡 shaky (revisit) · 🔴 gap (must fix) · ⬜ not yet
   (linear gate vs feedback loop). Logged as 🟡 to re-test next session.
 - Strong on stopping conditions & design-time-vs-runtime decomposition.
 - HOMEWORK: "when NOT to build an agent" + a pattern-matching warm-up next time.
+
+### Session 2 — 2026-06-14
+- Capstone pattern-matching: 5/5 (self-corrected E chaining vs evaluator).
+- Homework reviewed: closed out "when NOT to build an agent" (🟢).
+- **D1 COMPLETE — all 10 sub-topics green.** Boundary discriminations held up
+  on cold recall (the 🟡 items from Session 1 are now solid).
+- NEXT: D2 — Tool Design & MCP. Start with tool schema design & tool_use/
+  tool_result blocks, then MCP primitives.
