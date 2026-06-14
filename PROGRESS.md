@@ -20,10 +20,13 @@ Legend: 🟢 solid · 🟡 shaky (revisit) · 🔴 gap (must fix) · ⬜ not yet
       justifies cost. (Briefly mis-placed "debugging" as simple, self-corrected.)
 
 ## D2 — Tool Design & MCP Integration (18%)
-- ⬜ Tool schema design & descriptions
-- ⬜ tool_use / tool_result message blocks
-- ⬜ Multi-turn tool use
-- ⬜ isError handling
+- 🟢 Tool schema design & descriptions (model sees: name + input_schema + description;
+      describe like onboarding docs; enum/pattern/example to prevent garbage values)
+- 🟢 tool_use / tool_result message blocks (linked by id; result goes in a USER message;
+      must append assistant's tool_use msg back into history first)
+- 🟢 Multi-turn tool use (full round-trip flow)
+- 🟢 isError handling (`is_error: true` boolean + descriptive content; distinguish
+      failure from valid-empty result)
 - ⬜ MCP primitives: tools, resources, prompts
 - ⬜ MCP in Claude Code / server scoping
 
