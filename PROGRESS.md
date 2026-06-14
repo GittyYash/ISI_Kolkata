@@ -27,8 +27,14 @@ Legend: 🟢 solid · 🟡 shaky (revisit) · 🔴 gap (must fix) · ⬜ not yet
 - 🟢 Multi-turn tool use (full round-trip flow)
 - 🟢 isError handling (`is_error: true` boolean + descriptive content; distinguish
       failure from valid-empty result)
-- ⬜ MCP primitives: tools, resources, prompts
-- ⬜ MCP in Claude Code / server scoping
+- 🟢 MCP primitives: tools (model-controlled), resources (app-controlled read-only data),
+      prompts (user-controlled templates → slash commands). Mnemonic: model/app/user controls it.
+- 🟡 MCP in Claude Code / server scoping: local (default; you+this project),
+      project (.mcp.json in repo; whole team), user (you across all projects).
+      Trap: "shared with team" = PROJECT scope, not "global"/user. Corrected — re-test next time.
+      PRECEDENCE (verified, docs): local > project > user > plugin > claude.ai connector.
+      Winner-takes-all by name — entire entry from highest scope used, NO field merge.
+      (Yash initially flipped to local>user>project — project beats user.)
 
 ## D3 — Claude Code Config & Workflows (20%)
 - ⬜ CLAUDE.md
