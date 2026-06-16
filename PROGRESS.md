@@ -59,8 +59,14 @@ Legend: 🟢 solid · 🟡 shaky (revisit) · 🔴 gap (must fix) · ⬜ not yet
       Command name = directory name. Skills & custom commands have merged. Locations: ~/.claude/skills
       (user), .claude/skills (project/git), plugins. THE BIG THREE: CLAUDE.md=always-on facts;
       skill=on-demand procedures; hook=deterministic enforcement.
-- ⬜ Settings & permissions
-- ⬜ GitHub integration / SDK
+- 🟢 Settings & permissions: settings.json. Precedence (high→low): managed/enterprise >
+      CLI args > local project > shared project > user. Permission lists: allow/ask/deny
+      (DENY WINS). Rule syntax Bash(git push:*), Edit(src/**). Modes: default, acceptEdits,
+      plan (read-only), bypassPermissions. Managed ENFORCES, CLAUDE.md GUIDES. permissions.deny
+      = static pattern; PreToolUse hook = programmable judgment.
+- 🟢 GitHub integration / SDK: GitHub Action (/install-github-app, tag @claude in issue/PR, runs
+      headless in CI). Agent SDK (TS/Python) = build custom agents programmatically (headless
+      claude -p), control tools/MCP/permissions/hooks.
 
 ## D4 — Prompt Engineering & Structured Output (20%)
 - ⬜ Prompt structure & XML tags
@@ -106,3 +112,15 @@ Legend: 🟢 solid · 🟡 shaky (revisit) · 🔴 gap (must fix) · ⬜ not yet
   on cold recall (the 🟡 items from Session 1 are now solid).
 - NEXT: D2 — Tool Design & MCP. Start with tool schema design & tool_use/
   tool_result blocks, then MCP primitives.
+
+### Session 3 — 2026-06-16
+- D2 COMPLETE (tool design, message blocks, is_error, MCP primitives, scoping/precedence).
+- D3 COMPLETE — switched to TEACH-FIRST (Yash rusty on D3), then quizzed. Covered CLAUDE.md,
+  custom commands, hooks, skills, settings/permissions, GitHub/SDK. All 🟢.
+  Slips caught & fixed: Stop vs PostToolUse for post-edit formatting; exit-1-isn't-blocking
+  (must be exit 2); description (not disable-model-invocation) as main reason a skill won't auto-fire.
+- Great conceptual question from Yash: "is editing a file the LLM or a tool?" → tool. Mental
+  model locked: LLM decides, tools act, hooks = tripwires on tool calls.
+- 3 of 5 domains done (D1+D2+D3 = 65% of exam).
+- NEXT: D4 — Prompt Engineering & Structured Output (20%). Likely teach-first again.
+- HOMEWORK: think about WHY XML tags help Claude parse a prompt, and what "prefill" is.
