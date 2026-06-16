@@ -51,7 +51,14 @@ Legend: 🟢 solid · 🟡 shaky (revisit) · 🔴 gap (must fix) · ⬜ not yet
       EXIT CODES: 0=ok, 2=BLOCK(stderr→Claude), other(incl 1)=non-blocking. KEY TRAP: 1 ≠ block.
       Mental model: LLM decides, tools act, hooks=tripwires on tool calls (Edit/Write = tools).
       Initial slip: said Stop for post-edit format (→PostToolUse) and missed exit-1-not-blocking; both fixed.
-- ⬜ Skills (SKILL.md frontmatter)
+- 🟢 Skills (SKILL.md): folder + SKILL.md (frontmatter + body). PROGRESSIVE DISCLOSURE — only
+      `description` always in context; full body loads on invoke (vs CLAUDE.md full every session).
+      Frontmatter: description (REQUIRED, drives auto-invocation — vague=never fires), allowed-tools
+      (PRE-APPROVES, doesn't restrict), disable-model-invocation:true (user-only, e.g. /deploy),
+      user-invocable:false (Claude-only), context:fork (isolated subagent, no convo history).
+      Command name = directory name. Skills & custom commands have merged. Locations: ~/.claude/skills
+      (user), .claude/skills (project/git), plugins. THE BIG THREE: CLAUDE.md=always-on facts;
+      skill=on-demand procedures; hook=deterministic enforcement.
 - ⬜ Settings & permissions
 - ⬜ GitHub integration / SDK
 
