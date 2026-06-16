@@ -37,11 +37,20 @@ Legend: 🟢 solid · 🟡 shaky (revisit) · 🔴 gap (must fix) · ⬜ not yet
       (Yash initially flipped to local>user>project — project beats user.)
 
 ## D3 — Claude Code Config & Workflows (20%)
-- ⬜ CLAUDE.md
+- 🟢 CLAUDE.md: loaded every session as a USER message AFTER system prompt (NOT system prompt;
+      context not enforcement → use hooks for hard guarantees). Scopes: managed>user>project>local,
+      concatenated broad→specific. Keep <200 lines (token cost + better adherence). @imports (depth 4).
+      Path-specific → .claude/rules/ (paths frontmatter); multi-step procedures → skills. /init, /memory.
 - 🟢 Slash / custom commands: native (.claude/commands/ project = git-shared; ~/.claude/
       commands/ user) vs MCP prompts (external server, cross-client, /mcp__server__name).
       Commands support $ARGUMENTS, ! bash, @ files, frontmatter (description/allowed-tools/model).
-- ⬜ Hooks (events, matchers, exit codes, gotchas)
+- 🟢 Hooks: scripts that fire at lifecycle events, run deterministically (enforcement layer).
+      Events: SessionStart, UserPromptSubmit, PreToolUse(block✓), PostToolUse(react only),
+      Stop(force-continue✓), SubagentStop, PreCompact, SessionEnd, Notification.
+      Configured in settings.json. Structure: event→matcher(tool name)→hooks(handlers).
+      EXIT CODES: 0=ok, 2=BLOCK(stderr→Claude), other(incl 1)=non-blocking. KEY TRAP: 1 ≠ block.
+      Mental model: LLM decides, tools act, hooks=tripwires on tool calls (Edit/Write = tools).
+      Initial slip: said Stop for post-edit format (→PostToolUse) and missed exit-1-not-blocking; both fixed.
 - ⬜ Skills (SKILL.md frontmatter)
 - ⬜ Settings & permissions
 - ⬜ GitHub integration / SDK
