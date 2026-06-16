@@ -69,11 +69,18 @@ Legend: 🟢 solid · 🟡 shaky (revisit) · 🔴 gap (must fix) · ⬜ not yet
       claude -p), control tools/MCP/permissions/hooks.
 
 ## D4 — Prompt Engineering & Structured Output (20%)
-- ⬜ Prompt structure & XML tags
-- ⬜ Few-shot / CoT / prefill
-- ⬜ Structured & JSON output
-- ⬜ Tool use for structured data
-- ⬜ Output reliability
+- 🟢 Prompt structure & XML tags: order role→instructions→examples→data→question→thinking→format
+      →prefill. Long docs near TOP (before question) for accuracy. XML core benefit = disambiguate
+      INSTRUCTIONS vs DATA (also: Claude trained on it, easy output parsing, injection guardrail).
+- 🟢 Few-shot / CoT / prefill: few-shot (examples in <example> tags) best for consistent format/
+      classification. CoT for COMPLEX reasoning only (skip for simple — wastes tokens/latency).
+      Prefill = put words in Claude's mouth (force format e.g. `{`, skip preamble). Can't prefill
+      trailing whitespace or extended-thinking output.
+- 🟢 Structured & JSON output: reliability ladder ask-JSON < prefill { < schema+example < TOOL USE.
+- 🟢 Tool use for structured data: define tool whose input_schema = desired output structure,
+      force with tool_choice → schema does double duty (input contract + output shape). MOST reliable.
+- 🟢 Output reliability: specific format, examples, prefill, "I don't know" escape hatch,
+      restrict-to-context, cite-evidence-first, validate-and-retry.
 
 ## D5 — Context Management & Reliability (15%)
 - ⬜ Context windows
